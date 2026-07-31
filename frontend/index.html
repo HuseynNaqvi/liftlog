@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LiftLog AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+    <header class="app-header">
+        <h1>LiftLog AI</h1>
+        <button id="logout-btn" class="logout-button">Logout</button>
+    </header>
+
+    <section class="split-strip">
+        <div id="splits-list" class="splits-list"></div>
+        <form id="split-form" class="split-form">
+            <input type="text" id="split-name" class="form-input" placeholder="e.g. Push Day" required>
+            <button type="submit" class="form-button">Add Split</button>
+        </form>
+    </section>
+
+    <main class="main-content">
+        <section class="entry-section">
+            <h2>Log a Workout</h2>
+            <form id="entry-form" class="entry-form">
+                <label for="exercise">Exercise</label>
+                <input type="text" id="exercise" class="form-input" required>
+
+                <label for="weight">Weight (kg)</label>
+                <input type="number" id="weight" class="form-input" step="0.5" required>
+
+                <label for="reps">Reps</label>
+                <input type="number" id="reps" class="form-input" required>
+
+                <label for="sets">Sets</label>
+                <input type="number" id="sets" class="form-input" required>
+
+                <button type="submit" class="form-button">Add Entry</button>
+            </form>
+        </section>
+
+        <section class="history-section">
+            <h2>History</h2>
+            <div id="entries-list" class="entries-list"></div>
+        </section>
+    </main>
+
+    <button id="open-suggestion-btn" class="suggestion-trigger">Get Suggestion</button>
+
+    <div id="suggestion-modal-overlay" class="modal-overlay hidden">
+        <div id="suggestion-modal" class="modal">
+            <button id="close-suggestion-btn" class="modal-close">&times;</button>
+            <h2>Get Suggestion</h2>
+            <form id="suggestion-form" class="suggestion-form">
+                <label for="suggestion-exercise">Exercise name</label>
+                <input type="text" id="suggestion-exercise" class="form-input" required>
+                <button type="submit" class="form-button">Get Suggestion</button>
+            </form>
+            <div id="suggestion-result" class="suggestion-result"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
