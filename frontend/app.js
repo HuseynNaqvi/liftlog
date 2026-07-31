@@ -20,7 +20,7 @@ const openSuggestionBtn = document.querySelector('#open-suggestion-btn');
 const suggestionModalOverlay = document.querySelector('#suggestion-modal-overlay');
 const closeSuggestionBtn = document.querySelector('#close-suggestion-btn');
 
-if (window.location.pathname.includes('index.html')) {
+if (!window.location.pathname.includes('login.html') && !window.location.pathname.includes('register.html')) {
     const token = localStorage.getItem('token');
     if (!token) {
         window.location.href = 'login.html';
