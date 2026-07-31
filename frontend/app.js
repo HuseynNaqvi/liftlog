@@ -19,6 +19,10 @@ const suggestionResult = document.querySelector('#suggestion-result');
 const openSuggestionBtn = document.querySelector('#open-suggestion-btn');
 const suggestionModalOverlay = document.querySelector('#suggestion-modal-overlay');
 const closeSuggestionBtn = document.querySelector('#close-suggestion-btn');
+const closeSplitModalBtn = document.querySelector('#close-split-modal-btn');
+const splitModalOverlay = document.querySelector('#split-modal-overlay');
+const saveSplitBtn = document.querySelector('#save-split-btn');
+const splitContentTextarea = document.querySelector('#split-content-textarea');
 
 if (!window.location.pathname.includes('login.html') && !window.location.pathname.includes('register.html')) {
     const token = localStorage.getItem('token');
@@ -142,6 +146,8 @@ if (entriesList) {
     loadEntries();
 }
 
+let currentSplitId = null;
+
 async function loadSplits() {
     const token = localStorage.getItem('token');
     const response = await fetch('https://liftlog-backend-ycan.onrender.com/splits', {
@@ -151,10 +157,19 @@ async function loadSplits() {
 
     splitsList.innerHTML = splits.map(split => `
         <div class="split-item">
-            ${split.name}
+            <span class="split-name-link" data-id="${split.id}" data-content="${encodeURIComponent(split.content || '')}">${split.name}</span>
             <button class="delete-split-btn" data-id="${split.id}">Delete</button>
         </div>
     `).join('');
+
+    document.querySelectorAll('.split-name-link').forEach(el => {
+        el.addEventListener('click', () => {
+            currentSplitId = el.dataset.id;
+            document.querySelector('#split-modal-title').innerText = el.innerText;
+            document.querySelector('#split-content-textarea').value = decodeURIComponent(el.dataset.content);
+            document.querySelector('#split-modal-overlay').classList.remove('hidden');
+        });
+    });
 
     document.querySelectorAll('.delete-split-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
@@ -234,5 +249,39 @@ if (suggestionModalOverlay) {
         if (e.target === suggestionModalOverlay) {
             suggestionModalOverlay.classList.add('hidden');
         }
+    });
+}
+
+if (closeSplitModalBtn) {
+    closeSplitModalBtn.addEventListener('click', () => {
+        splitModalOverlay.classList.add('hidden');
+    });
+}
+
+if (splitModalOverlay) {
+    splitModalOverlay.addEventListener('click', (e) => {
+        if (e.target === splitModalOverlay) {
+            splitModalOverlay.classList.add('hidden');
+        }
+    });
+}
+
+if (saveSplitBtn) {
+    saveSplitBtn.addEventListener('click', async () => {
+        const token = localStorage.getItem('token');
+        const name = document.querySelector('#split-modal-title').innerText;
+        const content = splitContentTextarea.value;
+
+        await fetch(`https://liftlog-backend-ycan.onrender.com/splits/${currentSplitId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ name, content })
+        });
+
+        splitModalOverlay.classList.add('hidden');
+        loadSplits();
     });
 }
