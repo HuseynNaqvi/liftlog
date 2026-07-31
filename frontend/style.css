@@ -220,6 +220,7 @@ body.app-page {
   gap: 0.5rem;
   max-height: 420px;
   overflow-y: auto;
+  min-height: 0;
 }
 
 .entry-item {
@@ -339,5 +340,5 @@ body.app-page {
 .history-section {
   display: flex;
   flex-direction: column;
-  max-height: 520px;
+  min-height: 0;
 }
