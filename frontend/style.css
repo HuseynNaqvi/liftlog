@@ -218,7 +218,7 @@ body.app-page {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: 420px;
+  height: 420px;
   overflow-y: auto;
   min-height: 0;
 }
@@ -341,4 +341,22 @@ body.app-page {
   display: flex;
   flex-direction: column;
   min-height: 0;
+}
+
+.entries-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.entries-list::-webkit-scrollbar-track {
+  background: #16181c;
+  border-radius: 8px;
+}
+
+.entries-list::-webkit-scrollbar-thumb {
+  background: #2c2f35;
+  border-radius: 8px;
+}
+
+.entries-list::-webkit-scrollbar-thumb:hover {
+  background: #ff4f1f;
 }
