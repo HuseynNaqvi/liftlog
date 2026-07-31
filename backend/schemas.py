@@ -25,6 +25,7 @@ class WorkoutEntryPublic(WorkoutEntryBase):
 
 class SplitBase(SQLModel):
     name: str
+    content: str = ''
 
 class SplitCreate(SplitBase):
     pass
