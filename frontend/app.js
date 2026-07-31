@@ -34,7 +34,7 @@ if (registerForm) {
         const email = emailInput.value;
         const password = passwordInput.value;
 
-        const response = await fetch('http://127.0.0.1:8000/register', {
+        const response = await fetch('https://liftlog-backend-ycan.onrender.com/register', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username, email, password})
@@ -55,7 +55,7 @@ if(loginForm){
         const username = usernameInput.value;
         const password = passwordInput.value;
 
-        const response = await fetch('http://127.0.0.1:8000/login', {
+        const response = await fetch('https://liftlog-backend-ycan.onrender.com/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: new URLSearchParams({ username, password })
@@ -88,7 +88,7 @@ if (entryForm) {
         const reps = repsInput.value;
         const sets = setsInput.value;
 
-        const response = await fetch('http://127.0.0.1:8000/entries', {
+        const response = await fetch('https://liftlog-backend-ycan.onrender.com/entries', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ if (entryForm) {
 
 async function loadEntries() {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://127.0.0.1:8000/entries', {
+    const response = await fetch('https://liftlog-backend-ycan.onrender.com/entries', {
         headers: { 'Authorization': `Bearer ${token}` }
     });
     const entries = await response.json();
@@ -129,7 +129,7 @@ async function loadEntries() {
     document.querySelectorAll('.delete-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
             const id = btn.dataset.id;
-            await fetch(`http://127.0.0.1:8000/entries/${id}`, {
+            await fetch(`https://liftlog-backend-ycan.onrender.com/entries/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -144,7 +144,7 @@ if (entriesList) {
 
 async function loadSplits() {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://127.0.0.1:8000/splits', {
+    const response = await fetch('https://liftlog-backend-ycan.onrender.com/splits', {
         headers: { 'Authorization': `Bearer ${token}` }
     });
     const splits = await response.json();
@@ -159,7 +159,7 @@ async function loadSplits() {
     document.querySelectorAll('.delete-split-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
             const id = btn.dataset.id;
-            await fetch(`http://127.0.0.1:8000/splits/${id}`, {
+            await fetch(`https://liftlog-backend-ycan.onrender.com/splits/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -178,7 +178,7 @@ if (splitForm) {
         const token = localStorage.getItem('token');
         const name = splitNameInput.value;
 
-        const response = await fetch('http://127.0.0.1:8000/splits', {
+        const response = await fetch('https://liftlog-backend-ycan.onrender.com/splits', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -203,7 +203,7 @@ if (suggestionForm) {
         const token = localStorage.getItem('token');
         const exercise = suggestionExerciseInput.value;
 
-        const response = await fetch(`http://127.0.0.1:8000/entries/${exercise}/suggestion`, {
+        const response = await fetch(`https://liftlog-backend-ycan.onrender.com/entries/${exercise}/suggestion`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
