@@ -335,3 +335,9 @@ body.app-page {
     grid-template-columns: 1fr;
   }
 }
+
+.history-section {
+  display: flex;
+  flex-direction: column;
+  max-height: 520px;
+}
