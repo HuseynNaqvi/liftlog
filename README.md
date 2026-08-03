@@ -2,7 +2,7 @@
 
 A full-stack workout logging app with real AI-powered progression suggestions. Log your lifts, track splits as freeform notes, and get a suggestion — generated live by Google's Gemini API — on whether to bump up your weight, reps, or hold steady.
 
-**Live demo:** [liftlog-backend-ycan.onrender.com](https://liftlog-backend-ycan.onrender.com) (backend API + docs) · Frontend link TBD — confirm your production Vercel URL and drop it here.
+**Live demo:** [liftlog-eight-ruddy.vercel.app](https://liftlog-eight-ruddy.vercel.app/) · [API docs](https://liftlog-backend-ycan.onrender.com/docs)
 
 > Note: the backend runs on Render's free tier, which spins down after ~15 minutes of inactivity. The first request after idling can take 30-50 seconds to wake up — that's expected, not a bug.
 
